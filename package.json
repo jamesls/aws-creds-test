@@ -1,0 +1,17 @@
+{
+  "name": "aws-js-cli",
+  "version": "1.0.0",
+  "description": "Testing credential parity with the AWS CLI",
+  "main": "jscreds.js",
+  "scripts": {
+    "start": "node jscreds.js"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/jamesls/aws-creds-test",
+  "dependencies": {
+    "aws-sdk": "^2.45.0",
+    "password-prompt": "^1.0.2",
+    "prompt": "^1.0.0"
+  }
+}
