@@ -1,6 +1,7 @@
 var AWS = require('aws-sdk');
 var crypto = require('crypto');
 var prompt = require('password-prompt');
+var hmacKey = process.env.TEST_KEY;
 var accessKeyId;
 var secretAccessKey;
 
@@ -14,12 +15,12 @@ prompt('Access Key: ')
     })
     .then(function(input) {
         secretAccessKey = input;
-        var akidHex = crypto.createHash('sha256').update(accessKeyId).digest('hex');
-        var sha1Hex = crypto.createHash('sha256').update(secretAccessKey).digest('hex');
-        console.log("AKID sha256: " + akidHex);
+        var akidHex = crypto.createHmac('sha256', hmacKey).update(accessKeyId).digest('hex');
+        var sha1Hex = crypto.createHmac('sha256', hmacKey).update(secretAccessKey).digest('hex');
+        console.log("AKID   hash: " + akidHex);
         console.log("AKID length: " + accessKeyId.length);
         console.log("\n");
-        console.log("SAK  sha256: " + sha1Hex);
+        console.log("SAK    hash: " + sha1Hex);
         console.log("SAK  length: " + secretAccessKey.length);
     })
     .then(function() {
@@ -31,7 +32,7 @@ prompt('Access Key: ')
         var sts = new AWS.STS(config);
         return sts.getCallerIdentity().promise();
     }).then(function(data) {
-        console.log("Sucessfully made an AWS request with the provided credentials");
+        console.log("Sucessfully made an AWS request with the provided credentials.");
         process.exit(0);
     }).catch(function(err) {
         console.error("Error making AWS request");

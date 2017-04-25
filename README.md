@@ -11,6 +11,17 @@ This script does the following:
 * Prompt for secret access key
 * Make a call to sts GetCallerIdentity with the provided credentials
 
+Ideally, everything passes in every language.  However, in the case
+of failure, we have more info on what went wrong:
+
+* If the script passes in one language but fails in another, assuming
+  the same credentials were provided, then this suggests an issue
+  with a specific languages credentials/signer code.  A hash is
+  printed to stdout to verify the same values are passed to each
+  language specific script.
+* If the script fails in every language this suggests there's an
+  issue with the credentials and not with the SDKs.
+
 
 ## Usage
 
@@ -28,32 +39,32 @@ Requirement already satisfied: jmespath<1.0.0,>=0.7.1 in /usr/local/lib/python2.
 Requirement already satisfied: six>=1.5 in /usr/local/lib/python2.7/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<2.0.0,>=1.5.0->-r requirements.txt (line 1))
 ```
 
-Next, you can run the pycreds and jscreds scripts to test.
-You can run each command individually or just run `make test`.
+Next, you can run the test script by running `make test`.
 If everything is successful you should see similar output:
 
 
 ```
 $ make test
-python pycreds.py
+./test-creds.sh
 Access Key:
 Secret Access Key:
-AKID sha256: 8348193876c4aacbd53d2cb0f7df11c41d8d7a587f1b637a6f279852983bc987
+AKID   hash: 301d32a48b632e9161c1f5af90201ca69cd44a43f0e5f51c3c72f760fd7ae436
 AKID length: 20
-SAK  sha256: fc5f836d35c6aed8ba8767afe356c8d9918d0d36708bd0e75a51f8d080a362da
+
+SAK    hash: e34a9d16604ecaa6f449a5f10d67cf6a70b961a8c9d682ab6eb001983c836782
 SAK  length: 40
 Successfuly made an AWS request with the provided credentials.
-node jscreds.js
+
 Access Key: ********************
 Secret Access Key: ****************************************
-AKID sha256: 8348193876c4aacbd53d2cb0f7df11c41d8d7a587f1b637a6f279852983bc987
+AKID   hash: 301d32a48b632e9161c1f5af90201ca69cd44a43f0e5f51c3c72f760fd7ae436
 AKID length: 20
 
 
-SAK  sha256: fc5f836d35c6aed8ba8767afe356c8d9918d0d36708bd0e75a51f8d080a362da
+SAK    hash: e34a9d16604ecaa6f449a5f10d67cf6a70b961a8c9d682ab6eb001983c836782
 SAK  length: 40
-Sucessfully made an AWS request with the provided credentials
+Sucessfully made an AWS request with the provided credentials.
 ```
 
-Note in the above output the sha256 of the access key in python matches the
-sha256 of the access key in node.  Same for secret access key.
+Note in the above output the hmac of the access key in python matches the
+hmac of the access key in node.  Same for secret access key.

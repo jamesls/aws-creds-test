@@ -1,16 +1,23 @@
+import os
 import hashlib
 import getpass
+import hmac
 
 import botocore.session
 import botocore.exceptions
 
 
+def _hash(value):
+    return hmac.new(os.environ['TEST_KEY'], value,
+                    digestmod=hashlib.sha256).hexdigest()
+
+
 def main():
     access_key = getpass.getpass("Access Key: ").strip()
     secret_access_key = getpass.getpass("Secret Access Key: ").strip()
-    print("AKID sha256: %s" % hashlib.sha256(access_key).hexdigest())
+    print("AKID   hash: %s" % _hash(access_key))
     print("AKID length: %s" % len(access_key))
-    print("\nSAK  sha256: %s" % hashlib.sha256(secret_access_key).hexdigest())
+    print("\nSAK    hash: %s" % _hash(secret_access_key))
     print("SAK  length: %s" % len(secret_access_key))
     session = botocore.session.get_session()
     sts = session.create_client('sts', aws_access_key_id=access_key,
