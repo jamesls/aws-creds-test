@@ -46,22 +46,24 @@ If everything is successful you should see similar output:
 ```
 $ make test
 ./test-creds.sh
+Testing python...
 Access Key:
 Secret Access Key:
-AKID   hash: 301d32a48b632e9161c1f5af90201ca69cd44a43f0e5f51c3c72f760fd7ae436
+AKID   hash: 1b94fb49749540691da15efedd6c991d949e492e0102fcc56bf15846cd4d1ba7
 AKID length: 20
 
-SAK    hash: e34a9d16604ecaa6f449a5f10d67cf6a70b961a8c9d682ab6eb001983c836782
+SAK    hash: 1bb74946861076203ef2d31e08c464c2eb9932e761114336d2a4f64ec7987667
 SAK  length: 40
 Successfuly made an AWS request with the provided credentials.
 
+Testing javasript...
 Access Key: ********************
 Secret Access Key: ****************************************
-AKID   hash: 301d32a48b632e9161c1f5af90201ca69cd44a43f0e5f51c3c72f760fd7ae436
+AKID   hash: 1b94fb49749540691da15efedd6c991d949e492e0102fcc56bf15846cd4d1ba7
 AKID length: 20
 
 
-SAK    hash: e34a9d16604ecaa6f449a5f10d67cf6a70b961a8c9d682ab6eb001983c836782
+SAK    hash: 1bb74946861076203ef2d31e08c464c2eb9932e761114336d2a4f64ec7987667
 SAK  length: 40
 Sucessfully made an AWS request with the provided credentials.
 ```
