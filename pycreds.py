@@ -10,7 +10,7 @@ def main():
     secret_access_key = getpass.getpass("Secret Access Key: ").strip()
     print("AKID sha256: %s" % hashlib.sha256(access_key).hexdigest())
     print("AKID length: %s" % len(access_key))
-    print("SAK  sha256: %s" % hashlib.sha256(secret_access_key).hexdigest())
+    print("\nSAK  sha256: %s" % hashlib.sha256(secret_access_key).hexdigest())
     print("SAK  length: %s" % len(secret_access_key))
     session = botocore.session.get_session()
     sts = session.create_client('sts', aws_access_key_id=access_key,
@@ -18,9 +18,9 @@ def main():
     try:
         response = sts.get_caller_identity()
         print("Successfuly made an AWS request with the "
-              "provided credentials.")
+              "provided credentials.\n")
     except botocore.exceptions.ClientError as e:
-        print("Error making AWS request: %s" % e)
+        print("Error making AWS request: %s\n" % e)
 
 
 if __name__ == '__main__':

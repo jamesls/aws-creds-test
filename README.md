@@ -14,25 +14,28 @@ This script does the following:
 
 ## Usage
 
-First, install the node and python packages:
+First, install the node and python packages.  You can use pip/npm
+directly or you can just run `make install`.
 
 ```
-$ pip install -r requirements.txt
+$ make install
+npm install
+pip install -r requirements.txt
 Requirement already satisfied: botocore<2.0.0,>=1.5.0 in /usr/local/lib/python2.7/site-packages (from -r requirements.txt (line 1))
 Requirement already satisfied: python-dateutil<3.0.0,>=2.1 in /usr/local/lib/python2.7/site-packages (from botocore<2.0.0,>=1.5.0->-r requirements.txt (line 1))
 Requirement already satisfied: docutils>=0.10 in /usr/local/lib/python2.7/site-packages (from botocore<2.0.0,>=1.5.0->-r requirements.txt (line 1))
 Requirement already satisfied: jmespath<1.0.0,>=0.7.1 in /usr/local/lib/python2.7/site-packages (from botocore<2.0.0,>=1.5.0->-r requirements.txt (line 1))
 Requirement already satisfied: six>=1.5 in /usr/local/lib/python2.7/site-packages (from python-dateutil<3.0.0,>=2.1->botocore<2.0.0,>=1.5.0->-r requirements.txt (line 1))
-$ npm install
-$
 ```
 
 Next, you can run the pycreds and jscreds scripts to test.
+You can run each command individually or just run `make test`.
 If everything is successful you should see similar output:
 
 
 ```
-$ python pycreds.py
+$ make test
+python pycreds.py
 Access Key:
 Secret Access Key:
 AKID sha256: 8348193876c4aacbd53d2cb0f7df11c41d8d7a587f1b637a6f279852983bc987
@@ -40,7 +43,7 @@ AKID length: 20
 SAK  sha256: fc5f836d35c6aed8ba8767afe356c8d9918d0d36708bd0e75a51f8d080a362da
 SAK  length: 40
 Successfuly made an AWS request with the provided credentials.
-~/Source/scratch/aws-creds-test $ node jscreds.js
+node jscreds.js
 Access Key: ********************
 Secret Access Key: ****************************************
 AKID sha256: 8348193876c4aacbd53d2cb0f7df11c41d8d7a587f1b637a6f279852983bc987
