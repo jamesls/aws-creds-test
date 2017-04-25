@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export TEST_KEY=$(cat /dev/urandom | env LC_CTYPE=C tr -cd 'a-f0-9' | head -c 40)
+export TEST_KEY=$(python -c 'import os; print(os.urandom(40).encode("base64").strip())')
 echo "Testing python..."
 python pycreds.py
 echo "Testing javasript..."
